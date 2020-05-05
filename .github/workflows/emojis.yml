@@ -1,0 +1,22 @@
+name: emojis cron
+on:
+  schedule:
+    - cron: '0 * * * *'
+jobs:
+  update:
+    name: pull/push
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+
+      - name: install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13
+
+      - name: pull/push
+        run: npm run update
+        env:
+          ACTOR: '${{ github.actor }}'
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'

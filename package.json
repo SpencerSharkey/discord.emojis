@@ -1,0 +1,13 @@
+{
+  "license": "MIT",
+  "private": false,
+  "main": "dist/index.js",
+  "name": "discord.emojis",
+  "author": "devcat <cat@tsu.sh>",
+  "description": "emojis list extracted from discord client",
+  "repository": "https://github.com/devcat/discord.emojis.git",
+
+  "scripts": {
+    "update": "node src/run.js"
+  }
+}
