@@ -7,14 +7,18 @@ async function main() {
   const prev = JSON.parse(readFileSync('./dist/metadata.json').toString());
 
   const discord_html = await fetch('https://discord.com/channels/@me');
-  const current = await find(emojis, prev.hash, discord_html.toString());
+  const updated = await find(emojis, prev.hash, discord_html.toString());
   
-  if (!current) process.exit(0);
+  if (!updated) process.exit(0);
 
   execSync('git config --local user.name "github-actions[bot]"');
+  writeFileSync('.npmrc', `//registry.npmjs.org/:_authToken=${process.env.NPM_TOKEN}`);
   execSync('git config --local user.email "github-actions[bot]@users.noreply.github.com"');
 
   execSync('git commit -m "update emojis" -a');
+
+  execSync('npm version patch');
+  execSync('npm publish --access=public');
   execSync(`git push https://${process.env.ACTOR}:${process.env.GITHUB_TOKEN}@github.com/devcat/discord.emojis.git HEAD:master`);
 }
 
