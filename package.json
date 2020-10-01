@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "@c4t/emojis",
   "main": "dist/index.js",
   "author": "devcat <cat@tsu.sh>",
@@ -10,5 +10,9 @@
   "scripts": {
     "update": "node src/run.js"
   },
-  "files": ["dist/", "README.md", "package.json"]
+  "files": [
+    "dist/",
+    "README.md",
+    "package.json"
+  ]
 }
